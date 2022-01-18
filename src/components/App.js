@@ -8,6 +8,7 @@ function App() {
     name: '',
     tutor: '',
     speciality: '',
+    social: '',
   });
 
   const [search, setSearch] = useState('');
@@ -48,6 +49,7 @@ function App() {
       name: '',
       tutor: '',
       speciality: '',
+      social: '',
     });
   };
 
@@ -73,11 +75,12 @@ function App() {
         <td className="page__table--td">{adalaber.name}</td>
         <td className="page__table--td">{adalaber.tutor}</td>
         <td className="page__table--td">{adalaber.speciality}</td>
-        <td className="page__table--td">
+
+        {/* <td className="page__table--td">
           <a href={adalaber.social.map((eachObject) => eachObject.url)}>
             {adalaber.social.map((eachObject) => eachObject.name)}
           </a>
-        </td>
+        </td> */}
       </tr>
     ));
 
