@@ -12,6 +12,8 @@ function App() {
 
   const [search, setSearch] = useState('');
 
+  const [selectOptions, setSelectOptions] = useState('all');
+
   //API CON EFFECT
   useEffect(() => {
     getData().then((adalaber) => {
@@ -22,6 +24,10 @@ function App() {
   console.log(data);
 
   //Handle
+
+  const handleFilter = (ev) => {
+    setSelectOptions(ev.currentTarget.value);
+  };
 
   const handleSearchAdalaber = (ev) => {
     setSearch(ev.currentTarget.value);
@@ -51,8 +57,19 @@ function App() {
     .filter((eachAdalaber) =>
       eachAdalaber.name.toLowerCase().includes(search.toLowerCase())
     )
-    .map((adalaber) => (
-      <tr key={adalaber.id}>
+    .filter((eachAdalaber) => {
+      if (selectOptions === 'yanelis') {
+        return eachAdalaber.tutor === 'Yanelis';
+      } else if (selectOptions === 'dayana') {
+        return eachAdalaber.tutor === 'Dayana';
+      } else if (selectOptions === 'ivan') {
+        return eachAdalaber.tutor === 'Iván';
+      } else {
+        return eachAdalaber;
+      }
+    })
+    .map((adalaber, index) => (
+      <tr key={(adalaber.id, index)}>
         <td>{adalaber.name}</td>
         <td>{adalaber.tutor}</td>
         <td>{adalaber.speciality}</td>
@@ -71,6 +88,12 @@ function App() {
           onChange={handleSearchAdalaber}
         />
       </form>
+      <select name="" id="" onChange={handleFilter}>
+        <option value="all">Escoge una opcion</option>
+        <option value="yanelis">Yanelis</option>
+        <option value="dayana">Dayana</option>
+        <option value="ivan">Ivan</option>
+      </select>
       <table>
         <thead>
           <tr>
