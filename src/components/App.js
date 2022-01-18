@@ -70,19 +70,33 @@ function App() {
         return eachAdalaber;
       }
     })
-    .map((adalaber, index) => (
-      <tr className="page__table--tr" key={(adalaber.id, index)}>
-        <td className="page__table--td">{adalaber.name}</td>
-        <td className="page__table--td">{adalaber.tutor}</td>
-        <td className="page__table--td">{adalaber.speciality}</td>
+    .map((adalaber, index) => {
+      if (adalaber.social === '') {
+        return (
+          <tr className="page__table--tr" key={(adalaber.id, index)}>
+            <td className="page__table--td">{adalaber.name}</td>
+            <td className="page__table--td">{adalaber.tutor}</td>
+            <td className="page__table--td">{adalaber.speciality}</td>
 
-        {/* <td className="page__table--td">
-          <a href={adalaber.social.map((eachObject) => eachObject.url)}>
-            {adalaber.social.map((eachObject) => eachObject.name)}
-          </a>
-        </td> */}
-      </tr>
-    ));
+            <td className="page__table--td"></td>
+          </tr>
+        );
+      } else {
+        return (
+          <tr className="page__table--tr" key={(adalaber.id, index)}>
+            <td className="page__table--td">{adalaber.name}</td>
+            <td className="page__table--td">{adalaber.tutor}</td>
+            <td className="page__table--td">{adalaber.speciality}</td>
+
+            <td className="page__table--td">
+              <a href={adalaber.social.map((eachObject) => eachObject.url)}>
+                {adalaber.social.map((eachObject) => eachObject.name)}
+              </a>
+            </td>
+          </tr>
+        );
+      }
+    });
 
   return (
     <div className="page">
